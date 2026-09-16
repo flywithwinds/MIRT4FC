@@ -31,10 +31,12 @@ LazyData: true
 ByteCompile: true
 RoxygenNote: 7.2.3
 Imports:
-	armspp,	doParallel,	foreach,	coda,	stats,	utils, lvmcomp,
-	Matrix
+  armspp,	doParallel,	foreach,	coda,	stats,	utils,
+  Matrix
 Depends:
   R (>= 3.5.0), Rcpp (>= 0.12.16),  parallel, methods,	mvnfast,	nloptr
+LinkingTo:
+  RcppArmadillo
 Suggests: 
   roxygen2
 SystemRequirements: GNU make
