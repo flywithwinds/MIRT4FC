@@ -150,7 +150,7 @@ P.Yi_2PL_3_rank <- function(a,#matrix 3 x J
         # Estimate sigma using the package-local C++ implementation.
         sigm <- tryCatch(
           {
-            calcu_sigma_cmle_cpp(theta, 1e-5)
+            calcu_sigma_cmle(theta, 1e-5)
           },
           error = function(e) {
             cat("\nEstimated covariance matrix is not positive definite,fall back to using correlation matrix")

@@ -126,7 +126,7 @@ logLi_2PL_4_pick <- function(thetai, #vector of length D  ability for person i
         sigm <- cor(theta)
       }else{
         # estimate sigma using the proximal gradient descent algorithm - see Equations 12 - 15
-        sigm <- try(calcu_sigma_cmle_cpp(theta,1e-5),silent=TRUE)
+        sigm <- try(calcu_sigma_cmle(theta,1e-5),silent=TRUE)
         if(class(sigm)[1]=="try-error"){
           sigm <- cor(theta)
           cat("\nEstimated covariance matrix is not positive definite.")

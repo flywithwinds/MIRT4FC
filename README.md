@@ -19,7 +19,7 @@ The initial version includes the project parameter estimation function of the 2p
 This version has added the SE estimation function for project parameters
 
 1.1.0 2026.09.30
-This version has added the fixed item parameter option for IStEM algorithm. And stability protection has been added to the IStEM algorithm for L-BFGS-B optimizer.
+This version has added the fixed item parameter option for IStEM algorithm. And stability protection has been added to the IStEM algorithm for L-BFGS-B optimizer. The package lvmcomp has been removed from the dependencies.
 
 ## Installation
 
@@ -94,6 +94,8 @@ print(fit)
 
 
 ## Example 3
+This is a fixed item parameter example.
+
 ``` r
 library (MIRT4FC)
 set.seed(123456) # Set random seed
