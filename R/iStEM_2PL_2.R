@@ -16,10 +16,21 @@ iStEM_2PL_2 <- function(Y,BID,positive=rep(TRUE,nrow(BID)),M=10,B=20,SE='complet
   #number of dimensions
   D <- length(unique(BID$Dim))
   N <- nrow(Y) #number of participants
-  J <- length(unique(BID$Block)) # number of blocks
+  # 算法内部以块标签作为矩阵列下标（Y[,j]、a[,j] 等），故先将 BID$Block 归一化为 1:J，保持原有块的顺序
+  block.labels <- unique(BID$Block)
+  BID$Block <- match(BID$Block, block.labels)
+  if(!is.null(fixed.blocks)){
+    fixed.blocks <- match(fixed.blocks, block.labels)
+    if(anyNA(fixed.blocks)) stop("'fixed.blocks' contains block labels that are not present in BID")
+  }
+  J <- length(block.labels) # number of blocks
   Q <- nrow(BID) # number of questions
   IN <- 2*blocksize-1 # Number of item parameter
   npar <- IN*J+D*(D-1)/2
+  # 前置校验：Y 的列数须等于块数，positive 须与 BID 行数一致，且每块须恰好含 blocksize 个题目
+  if(ncol(Y)!=J) stop("ncol(Y) (", ncol(Y), ") must equal the number of blocks J (", J, ")")
+  if(length(positive)!=Q) stop("length(positive) (", length(positive), ") must equal nrow(BID) (", Q, ")")
+  if(any(table(BID$Block)!=blocksize)) stop("Every block must contain exactly blocksize (", blocksize, ") items in BID")
   #initial item parameters
   a <- matrix(positive,nrow=blocksize,ncol=J)
   d <- matrix(rnorm(blocksize*J),nrow=blocksize)
