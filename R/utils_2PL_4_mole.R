@@ -69,7 +69,7 @@ Pj_2PL_4_mole <- function(j,theta,aj=NULL,dj=NULL,BID=NULL,item.par=NULL){
 
 data.sim_2PL_4_mole <- function(item.par,theta,BID){
 
-  Y <- matrix(NA,nrow = nrow(theta),ncol = max(BID$Block))
+  Y <- matrix(NA,nrow = nrow(theta),ncol = length(unique(BID$Block)))
   for(j in unique(BID$Block)){
     pj <- Pj_2PL_4_mole(j=j,theta=theta,BID=BID,item.par=item.par)
 

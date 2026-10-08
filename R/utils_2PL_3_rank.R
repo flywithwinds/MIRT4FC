@@ -34,7 +34,7 @@ Pj_2PL_3_rank <- function(j,theta,aj=NULL,dj=NULL,BID=NULL,item.par=NULL){
 
 data.sim_2PL_3_rank <- function(item.par,theta,BID){
 
-  Y <- matrix(NA,nrow = nrow(theta),ncol = max(BID$Block))
+  Y <- matrix(NA,nrow = nrow(theta),ncol = length(unique(BID$Block)))
   for(j in unique(BID$Block)){
     pj <- Pj_2PL_3_rank(j=j,theta=theta,BID=BID,item.par=item.par)
 

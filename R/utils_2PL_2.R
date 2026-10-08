@@ -17,7 +17,7 @@ param.vec.2.ads_2PL_2 <- function(pv,J,D,sigm=NULL,fix.sigma=FALSE){
 
 data.sim_2PL_2 <- function(item.par,theta,BID){
 
-  Y <- matrix(NA,nrow = nrow(theta),ncol = max(BID$Block))
+  Y <- matrix(NA,nrow = nrow(theta),ncol = length(unique(BID$Block)))
   for(j in unique(BID$Block)){
     pj <- Pj_2PL_2(j=j,theta=theta,BID=BID,item.par=item.par)
 

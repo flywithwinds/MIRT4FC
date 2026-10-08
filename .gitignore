@@ -5,3 +5,7 @@ src/*.o
 "*.exe" 
 "__pycache__/" 
 ".DS_Store" 
+"*.o" 
+"*.exe" 
+"__pycache__/" 
+".DS_Store" 

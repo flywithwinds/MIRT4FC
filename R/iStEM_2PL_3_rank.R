@@ -16,7 +16,7 @@ iStEM_2PL_3_rank <- function(Y,BID,positive=rep(TRUE,nrow(BID)),M=10,B=20,SE='Lo
   #number of dimensions
   D <- length(unique(BID$Dim))
   N <- nrow(Y) #number of participants
-  J <- max(BID$Block) # number of blocks
+  J <- length(unique(BID$Block)) # number of blocks
   Q <- nrow(BID) # number of questions
   IN <- 2*blocksize-1 # Number of item parameter
   npar <- IN*J+D*(D-1)/2
@@ -207,7 +207,7 @@ d.hat <- batch.var(plist,n=m)
     SE_item$SE.a=t(SE_item$SE.a)
     SE_item$SE.d=t(SE_item$SE.d)
   }else if(SE=='complete'){
-    se <- matrix(sqrt(diag(solve(hess_mean))),nrow=max(BID$Block),ncol=IN,byrow = TRUE)
+    se <- matrix(sqrt(diag(solve(hess_mean))),nrow=length(unique(BID$Block)),ncol=IN,byrow = TRUE)
     se.a <- se[,1:3]
     se.d <- se[,4:5]
     se.d <- cbind(se.d,sqrt(se.d[,1]^2+se.d[,2]^2))

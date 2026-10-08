@@ -449,7 +449,7 @@ px_item_2PL_4_mole <- function(theta,a,d,x=c(1,2,3,4)){#一个block内的一阶�
 
 
   itemI_2PL_4_mole <- function(theta,item.par,BID,Y,I,h=NULL){
-    D <- max(BID$Block)*(max(BID$Item)*2-1) #number of dims
+    D <- length(unique(BID$Block))*(max(BID$Item)*2-1) #number of dims
     itemI <- matrix(0,nrow=nrow(theta),ncol=D)
     for(b in unique(BID$Block)){
       items <- which(BID$Block==b)
@@ -542,7 +542,7 @@ px_item_2PL_4_mole <- function(theta,a,d,x=c(1,2,3,4)){#一个block内的一阶�
     se.d=NULL
     se.sigm=NULL
     tryCatch({
-      se <- matrix(sqrt(diag(solve(I))),nrow=max(BID$Block),ncol=IN,byrow = TRUE)
+      se <- matrix(sqrt(diag(solve(I))),nrow=length(unique(BID$Block)),ncol=IN,byrow = TRUE)
       se.a <- se[,1:4]
       se.d <- se[,5:7]
       se.d <- cbind(se.d,sqrt(se.d[,1]^2+se.d[,2]^2+se.d[,3]^2))
@@ -615,7 +615,7 @@ px_item_2PL_4_mole <- function(theta,a,d,x=c(1,2,3,4)){#一个block内的一阶�
     se.d=NULL
     se.sigm=NULL
     tryCatch({
-      se <- matrix(sqrt((diag(solve(I)))),nrow=max(BID$Block),ncol=IN,byrow = TRUE)
+      se <- matrix(sqrt((diag(solve(I)))),nrow=length(unique(BID$Block)),ncol=IN,byrow = TRUE)
       se.a <- se[,1:4]
       se.d <- se[,5:7]
       se.d <- cbind(se.d,sqrt(se.d[,1]^2+se.d[,2]^2+se.d[,3]^2))

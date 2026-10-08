@@ -16,7 +16,7 @@ iStEM_2PL_2 <- function(Y,BID,positive=rep(TRUE,nrow(BID)),M=10,B=20,SE='complet
   #number of dimensions
   D <- length(unique(BID$Dim))
   N <- nrow(Y) #number of participants
-  J <- max(BID$Block) # number of blocks
+  J <- length(unique(BID$Block)) # number of blocks
   Q <- nrow(BID) # number of questions
   IN <- 2*blocksize-1 # Number of item parameter
   npar <- IN*J+D*(D-1)/2
@@ -207,7 +207,7 @@ d.hat <- batch.var(plist,n=m)
     SE_item$SE.a=t(SE_item$SE.a)
     SE_item$SE.d=t(SE_item$SE.d)
   }else if(SE=='complete'){
-    se <- matrix(sqrt(diag(solve(hess_mean))),nrow=max(BID$Block),ncol=3,byrow = TRUE)
+    se <- matrix(sqrt(diag(solve(hess_mean))),nrow=length(unique(BID$Block)),ncol=3,byrow = TRUE)
     se.a <- se[,1:2]
     se.d <- se[,3]
     se.d <- cbind(se.d,se.d)

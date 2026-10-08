@@ -20,7 +20,7 @@ param.vec.2.ads_2PL_3_pick <- function(pv,J,D,sigm=NULL,fix.sigma=FALSE,blocksiz
 
 data.sim_2PL_3_pick <- function(item.par,theta,BID){
 
-  Y <- matrix(NA,nrow = nrow(theta),ncol = max(BID$Block))
+  Y <- matrix(NA,nrow = nrow(theta),ncol = length(unique(BID$Block)))
   for(j in unique(BID$Block)){
     pj <- Pj_2PL_3_pick(j=j,theta=theta,BID=BID,item.par=item.par)
 
