@@ -1,6 +1,6 @@
 obj_func <- function(sigma, sigma_hat) {
   sigma_inv <- solve(sigma)
-  sum(sigma_inv * sigma_hat) + as.numeric(determinant(sigma, logarithm = FALSE)$modulus)
+  sum(sigma_inv * sigma_hat) + as.numeric(determinant(sigma, logarithm = TRUE)$modulus)
 }
 
 calcu_sigma_cmle <- function(theta, tol = 1e-5) {
